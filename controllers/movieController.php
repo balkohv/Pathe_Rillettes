@@ -27,6 +27,16 @@ class MovieController
         return $result->fetch_assoc();
     }
 
+    public function getMovieByTitle ($title)
+    {
+        $query = "SELECT * FROM movies WHERE title = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
     public function createMovie($title, $categories, $duration, $views, $ref, $description, $review, $poster_ref)
     {
         $query = "INSERT INTO movies (title, categories, duration, views, ref, description, review, poster_ref) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -47,7 +57,7 @@ class MovieController
 
     public function getPopularMovies()
     {
-        $query = "SELECT * FROM movies ORDER BY views DESC LIMIT 10";
+        $query = "SELECT * FROM movies ORDER BY views DESC LIMIT 9";
         $result = $this->db->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -78,7 +88,7 @@ class MovieController
 
     public function searchMovies($search)
     {
-        $query = "SELECT * FROM movies WHERE title LIKE ? OR 1=1";
+        $query = "SELECT * FROM movies WHERE title LIKE ? ";
         $stmt = $this->db->prepare($query);
         $searchTerm = "%" . $search . "%";
         $stmt->bind_param("s", $searchTerm);

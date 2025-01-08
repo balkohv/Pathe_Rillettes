@@ -18,7 +18,7 @@ $(document).ready(function() {
 
             $('#playButton').click(async function() {
                 await is_started($('#poster-modal').attr('class'), userMovies, 1);
-                window.location.href = '../movie/player.php?id=' + $('#poster-modal').attr('class');
+                window.location.href = 'movie/player/' + $('#poster-modal').attr('class');
             });
 
             $("#addToWatchListButton").click(async function() {
@@ -110,7 +110,7 @@ $(document).ready(function() {
         let i = 0;
         movies.forEach(function(movie) {
             i += 1;
-            if (i > 10) {
+            if (i > 9) {
                 return;
             }
             container.append('<div class="item" id="' + movie["id_movie"] + '"><img src="' + movie["poster_ref"] + '" alt="' + movie["title"] + '" title="' + movie["title"] + '"></div>');
@@ -152,9 +152,14 @@ $(document).ready(function() {
         let container = $('#Recommended');
         console.log(recommandedMovie);
         container.empty();
+        let i = 0;
         let flag = false;
         recommandedMovie.forEach(function(movie) {
             flag = true;
+            i++;
+            if (i > 9) {
+                return;
+            }
             container.append('<div class="item" id="' + movie["id_movie"] + '"><img src="' + movie["poster_ref"] + '" alt="' + movie["title"] + '" title="' + movie["title"] + '"></div>');
         });
         if (flag == false) {
@@ -165,12 +170,12 @@ $(document).ready(function() {
     async function get_recommanded_movies() {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '../../dispatch/userMovieDispatch.php',
+                url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                 type: 'POST',
                 data: {
                     action: 'getUserRecommendations',
                     id_user: $("#data").attr("data-id"),
-                    limit: 10
+                    limit: 9
                 },
                 success: function(response) {
                     resolve(response);
@@ -186,7 +191,7 @@ $(document).ready(function() {
     function isfinished(id_movie, userMovies, is_finished) {
         console.log(id_movie, userMovies, is_finished);
         $.ajax({
-            url: '../../dispatch/userMovieDispatch.php',
+            url: '/pathe_rillette/dispatch/userMovieDispatch.php',
             type: 'POST',
             data: {
                 action: 'update',
@@ -211,7 +216,7 @@ $(document).ready(function() {
     async function in_list(id_movie, userMovies, in_list) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '../../dispatch/userMovieDispatch.php',
+                url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                 type: 'POST',
                 data: {
                     action: 'update',
@@ -238,7 +243,7 @@ $(document).ready(function() {
     async function is_started(id_movie, userMovies, is_started) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '../../dispatch/userMovieDispatch.php',
+                url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                 type: 'POST',
                 data: {
                     action: 'update',
@@ -264,7 +269,7 @@ $(document).ready(function() {
     function getUserMovies() {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '../../dispatch/userMovieDispatch.php',
+                url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                 type: 'POST',
                 data: {
                     action: 'getUserMoviesByUser',
@@ -284,7 +289,7 @@ $(document).ready(function() {
     function getMovies() {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '../../dispatch/movieDispatch.php',
+                url: '/pathe_rillette/dispatch/movieDispatch.php',
                 type: 'POST',
                 data: {
                     action: 'getMovies'
@@ -303,7 +308,7 @@ $(document).ready(function() {
     async function checkUserMovie(id_movie) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '../../dispatch/userMovieDispatch.php',
+                url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                 type: 'POST',
                 data: {
                     action: 'getUserMovie',
@@ -313,7 +318,7 @@ $(document).ready(function() {
                 success: function(response) {
                     if (response == "null") {
                         $.ajax({
-                            url: '../../dispatch/userMovieDispatch.php',
+                            url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                             type: 'POST',
                             data: {
                                 action: 'add',

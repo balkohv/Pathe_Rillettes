@@ -119,6 +119,6 @@ class UserController
         $stmt->bind_param("s", $token);
         $stmt->execute();
         $stmt->close();
-        header('Location: ../template/login.php');
+        header('Location: /pathe_rillette/login');
     }
 }

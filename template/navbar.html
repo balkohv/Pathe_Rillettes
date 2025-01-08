@@ -1,25 +1,30 @@
 <div class="navbar">
     <div>
-        <a href="../dashboard/dashboard.php" class="logo">
+        <a href="/pathe_rillette/dashboard" class="logo">
             Pathe & Rillettes
         </a>
     </div>
-    <form action="list.php" method="GET">
+    <form id="form-nav"  method="GET">
         <div class="menu">
                 <label for="search" class="search-icon">
                     <i class="fas fa-search"></i>
                 </label>
                 <input name="search" type="text" placeholder="Search...">
-            <a href="../movie/movies.php">Add a movie</a>
-            <a href="../login.php">log out</a>
+            <a href="/pathe_rillette/movie/add">Add a movie</a>
+            <a href="/pathe_rillette/login">log out</a>
         </div>
     </form>
 </div>
-<script src="../../jquery-3.7.1.min.js"></script>
+<script src="/pathe_rillette/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.search-icon').click(function() {
-            window.location.href = 'list.php?search=' + $('input[name="search"]').val();
+            window.location.href = '/pathe_rillette/movie/search/' + $('input[name="search"]').val();
+        });
+
+        $('#form-nav').submit(function(e) {
+            e.preventDefault();
+            window.location.href = '/pathe_rillette/movie/search/' + $('input[name="search"]').val();
         });
     });
 </script>

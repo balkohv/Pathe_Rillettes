@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="../style/global.css">
+    <link rel="stylesheet" type="text/css" href="/pathe_rillette/style/global.css">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
                 }
             }
             ?>
-            <form action="../dispatch/userDispatch.php" method="POST">
+            <form action="/pathe_rillette/dispatch/userDispatch.php" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" required>
@@ -48,7 +48,7 @@
                     <input type="password" name="confirm_password" id="confirm_password" required>
                 </div>
                 <div class="login-link">
-                    <p>Already have an account? <a href="login.php">Sign In</a></p>
+                    <p>Already have an account? <a href="/pathe_rillette/login">Sign In</a></p>
                 </div>
                 <input type="hidden" name="action" value="register">
                 <button type="submit">Register</button>

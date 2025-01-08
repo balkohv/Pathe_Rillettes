@@ -74,6 +74,11 @@ button:hover {
     background-color: #b30a12;
 }
 
+#form-nav{
+    display: flex;
+    align-items: center;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -85,6 +90,25 @@ button:hover {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
+}
+
+.navbar a:hover {
+    color: #838383;
+}
+
+.navbar input{
+    color: white;
+    border-radius: 5px;
+    margin-left: 10px;
+    background: #444444;
+}
+
+.navbar input:hover{
+    background: #333333;
+}
+
+.fa-search{
+    cursor: pointer;
 }
 
 .row {

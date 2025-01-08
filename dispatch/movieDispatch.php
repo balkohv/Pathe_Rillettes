@@ -34,6 +34,7 @@ switch ($action) {
 
 function uploadMovie($client)
 {
+    $movieController = new MovieController();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_FILES['movie']) && $_FILES['movie']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = '../movies/'; // Répertoire de destination des fichiers
@@ -46,7 +47,6 @@ function uploadMovie($client)
             $destination = $uploadDir . $fileName;
 
             if (move_uploaded_file($fileTmpPath, $destination)) {
-                echo 'File uploaded successfully!';
                 $response = $client->request('GET', 'https://api.themoviedb.org/3/search/movie?query=' . $_POST['name'] . '&include_adult=true&language=fr-US&page=1', [
                     'headers' => [
                         'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OGRlZTliNDU0NzAyYTUyN2I2NGZiOTkzZGYzZWYxZiIsIm5iZiI6MTczNjA4NDU3OC40MjMsInN1YiI6IjY3N2E4YzYyODJjY2UxNWE3Njc0ZjY1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vUxSHTJb17jGKbuEmtIevhN8w5MpuYPg4b2iB4Fa5PQ',
@@ -76,11 +76,15 @@ function uploadMovie($client)
                     $description = $conn->real_escape_string($movie['overview']);
                     $review = $conn->real_escape_string($movie['vote_average']);
                     $poster_ref = 'https://image.tmdb.org/t/p/w500/' . $conn->real_escape_string($movie['poster_path']);
-
+                    $result = $movieController->getMovieByTitle($conn->real_escape_string($movie['title']));
+                    if ($result) {
+                        echo "Movie already exists.";
+                        return;
+                    }
                     // Insert into database
                     $sql = "INSERT INTO movies (title, categories, duration, views, ref, description, review, poster_ref) VALUES ('$title', '$categories', '$duration', '$views', '$ref', '$description', '$review', '$poster_ref')";
                     if ($conn->query($sql) === TRUE) {
-                        echo "New record created successfully";
+                        echo "Movie added successfully.";
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     }
@@ -89,8 +93,6 @@ function uploadMovie($client)
                 }
 
                 $conn->close();
-
-                echo $response->getBody();
             } else {
                 echo 'Failed to move uploaded file.';
             }
@@ -101,4 +103,3 @@ function uploadMovie($client)
         echo 'Invalid request method.';
     }
 }
-

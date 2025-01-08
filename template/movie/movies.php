@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['id_user'])) {
-    header('Location: ../login.php');
+    header('Location: /pathe_rillette/login');
     exit;
 }
 ?>
@@ -14,7 +14,7 @@ if (!isset($_SESSION['id_user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Movie</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="../../style/global.css">
+    <link rel="stylesheet" type="text/css" href="/pathe_rillette/style/global.css">
 </head>
 
 <body>
@@ -55,6 +55,7 @@ if (!isset($_SESSION['id_user'])) {
     var xhr;
 
     document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        document.getElementById('status').innerText = '';
         event.preventDefault();
         var fileInput = document.getElementById('fileInput');
         var fileName = document.getElementById('fileNameInput');
@@ -65,7 +66,7 @@ if (!isset($_SESSION['id_user'])) {
         formData.append('action', "upload_movie");
 
         xhr = new XMLHttpRequest();
-        xhr.open('POST', '../../dispatch/movieDispatch.php', true);
+        xhr.open('POST', '/pathe_rillette/dispatch/movieDispatch.php', true);
 
         xhr.upload.onprogress = function(event) {
             if (event.lengthComputable) {
@@ -75,12 +76,7 @@ if (!isset($_SESSION['id_user'])) {
         };
 
         xhr.onload = function() {
-            if (xhr.status == 200) {
-                document.getElementById('status').innerText = 'Upload complete!';
-            } else {
-                document.getElementById('status').innerText = 'Upload failed!';
-            }
-            console.log(xhr.responseText);
+            document.getElementById('status').innerText =(xhr.responseText);
         };
 
         xhr.send(formData);

@@ -1,10 +1,10 @@
 <?php
 
 if (!isset($_SESSION['id_user'])) {
-    header('Location: template/login.php');
+    header('Location: /pathe_rillette/login');
     exit;
 }else{
-    header('Location: template/dashboard/dashboard.php');
+    header('Location:/pathe_rillette/dashboard');
     exit;
 }
 

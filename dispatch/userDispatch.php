@@ -15,15 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'register':
                 $result = $usersController->createUser($_POST['email'], $_POST['password']);
                 if ($result == "User created.") {
-                    header('Location: ../template/login.php');
+                    header('Location: /pathe_rillette/login');
                 } elseif ($result == "User already exists.") {
-                    header('Location: ../template/register.php?error=1');
+                    header('Location: /pathe_rillette/register/1');
                 } elseif ($result == "Passwords do not match.") {
-                    header('Location: ../template/register.php?error=2');
+                    header('Location: /pathe_rillette/register/2');
                 } elseif ($result == "Invalid email.") {
-                    header('Location: ../template/register.php?error=3');
+                    header('Location: /pathe_rillette/register/3');
                 } elseif ($result == "Invalid password.") {
-                    header('Location: ../template/register.php?error=4');
+                    header('Location: /pathe_rillette/register/4');
                 }
                 break;
             case 'login':
@@ -33,12 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     session_start();
                     $_SESSION['id_user'] = $result[1];
                     session_write_close();
-                    header('Location: ../template/dashboard/dashboard.php');
+                    header('Location: /pathe_rillette/dashboard');
                 } elseif($result == "The user is not activate.") {
-                    header('Location: ../template/login.php?error=2');
+                    header('Location: /pathe_rillette/login/2');
                 }
                 else {
-                    header('Location: ../template/login.php?error=1');
+                    header('Location: /pathe_rillette/login/1');
                 }
                 break;
             case 'archive':

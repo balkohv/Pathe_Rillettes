@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['id_user'])) {
-    header('Location: ../login.php');
+    header('Location: /pathe_rillette/login');
     exit;
 }
 ?>
@@ -17,7 +17,7 @@ if (!isset($_SESSION['id_user'])) {
 </head>
 
 <body>
-    <a href="../dashboard/dashboard.php" class="back-arrow fa-solid fa-arrow-left"></a>
+    <a href="/pathe_rillette/dashboard" class="back-arrow fa-solid fa-arrow-left"></a>
     <div class="video-container">
         <video id="videoPlayer" src="" autoplay muted controls></video>
     </div>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['id_user'])) {
 
     $(document).ready(function() {
         $.ajax({
-            url: '../../dispatch/movieDispatch.php',
+            url: '/pathe_rillette/dispatch/movieDispatch.php',
             type: 'POST',
             data: {
                 action: 'watch',
@@ -65,7 +65,7 @@ if (!isset($_SESSION['id_user'])) {
         });
 
         $.ajax({
-            url: '../../dispatch/movieDispatch.php',
+            url: '/pathe_rillette/dispatch/movieDispatch.php',
             type: 'POST',
             data: {
                 action: 'getMovieById',
@@ -90,7 +90,7 @@ if (!isset($_SESSION['id_user'])) {
         async function getUserMovies() {
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: '../../dispatch/userMovieDispatch.php',
+                    url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                     type: 'POST',
                     data: {
                         action: 'getUserMoviesByUser',
@@ -111,7 +111,7 @@ if (!isset($_SESSION['id_user'])) {
             return new Promise((resolve, reject) => {
                 let last_time_code=userMovies.find(userMovie => userMovie["id_movie"] == id_movie)["time_code"];
                 $.ajax({
-                    url: '../../dispatch/userMovieDispatch.php',
+                    url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                     type: 'POST',
                     data: {
                         action: 'update',

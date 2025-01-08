@@ -7,7 +7,7 @@ session_start();
 ?>
 <head>
     <title>Pathe rillette</title>
-    <link rel="stylesheet" type="text/css" href="../style/global.css">
+    <link rel="stylesheet" type="text/css" href="/pathe_rillette/style/global.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@ session_start();
                 }
             }
             ?>
-            <form action="../dispatch/userDispatch.php" method="post">
+            <form action="/pathe_rillette/dispatch/userDispatch.php" method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" required>
@@ -37,7 +37,7 @@ session_start();
                 <div class="form-group">
                     <p>
                         Don't have an account?
-                        <a href="register.php">Register here</a>
+                        <a href="/pathe_rillette/register">Register here</a>
                     </p>
                 </div>
                 <input type="hidden" name="action" value="login">

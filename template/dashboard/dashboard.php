@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['id_user'])) {
-    header('Location: ../login.php');
+    header('Location: /pathe_rillette/login');
     exit;
 }
 ?>
@@ -12,7 +12,7 @@ if (!isset($_SESSION['id_user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="../../style/global.css">
+    <link rel="stylesheet" type="text/css" href="style/global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -66,8 +66,5 @@ if (!isset($_SESSION['id_user'])) {
 </body>
 
 </html>
-<script src="../../jquery-3.7.1.min.js"></script>
-<script src="../../script.js"></script>
-<script>
-    
-</script>
+<script src="/pathe_rillette/jquery-3.7.1.min.js"></script>
+<script src="script.js"></script>

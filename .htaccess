@@ -1,0 +1,12 @@
+RewriteEngine On
+
+RewriteBase /
+
+RewriteRule ^login$ pathe_rillette/template/login.php [L]
+RewriteRule ^register/([0-9]+)$ pathe_rillette/template/register.php?error=$1 [L]
+RewriteRule ^login/([0-9]+)$ pathe_rillette/template/login.php?error=$1 [L]
+RewriteRule ^register$ pathe_rillette/template/register.php [L]
+RewriteRule ^dashboard$ pathe_rillette/template/dashboard/dashboard.php [L]
+RewriteRule ^movie/player/([0-9]+)$ pathe_rillette/template/movie/player.php?id=$1 [L]
+RewriteRule ^movie/add$ pathe_rillette/template/movie/movies.php [L]
+RewriteRule ^movie/search/(.+)$ pathe_rillette/template/dashboard/list.php?search=$1 [L]
