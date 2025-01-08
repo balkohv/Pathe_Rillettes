@@ -75,4 +75,15 @@ class MovieController
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
+
+    public function searchMovies($search)
+    {
+        $query = "SELECT * FROM movies WHERE title LIKE ? OR 1=1";
+        $stmt = $this->db->prepare($query);
+        $searchTerm = "%" . $search . "%";
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

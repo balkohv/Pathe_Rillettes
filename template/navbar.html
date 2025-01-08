@@ -4,12 +4,22 @@
             Pathe & Rillettes
         </a>
     </div>
-    <div class="menu">
-        <label for="search" class="search-icon">
-            <i class="fas fa-search"></i>
-        </label>
-        <input type="text" placeholder="Search...">
-        <a href="../movie/movies.php">Add a movie</a>
-        <a href="../login.php">log out</a>
-    </div>
+    <form action="list.php" method="GET">
+        <div class="menu">
+                <label for="search" class="search-icon">
+                    <i class="fas fa-search"></i>
+                </label>
+                <input name="search" type="text" placeholder="Search...">
+            <a href="../movie/movies.php">Add a movie</a>
+            <a href="../login.php">log out</a>
+        </div>
+    </form>
 </div>
+<script src="../../jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.search-icon').click(function() {
+            window.location.href = 'list.php?search=' + $('input[name="search"]').val();
+        });
+    });
+</script>

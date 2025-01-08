@@ -23,6 +23,10 @@ switch ($action) {
         break;
     case 'getPopularMovies':
         echo json_encode($moviesController->getPopularMovies());
+        break;
+    case 'search':
+        echo json_encode($moviesController->searchMovies($_POST['search']));
+        break;
     default:
         echo 'Invalid action.';
         break;
