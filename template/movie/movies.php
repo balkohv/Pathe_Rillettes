@@ -13,27 +13,40 @@ if (!isset($_SESSION['id_user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Movie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="../../style/global.css">
 </head>
 
 <body>
     <?php include '../navbar.html'; ?>
-    <h1>Upload Movie</h1>
-    <form id="uploadForm" class="upload-form" enctype="multipart/form-data">
-        <div>
-            <input type="file" id="fileInput" name="movie" accept="video/x-matroska,video/*" required>
-            <label for="fileNameInput">Movie Name (engl):</label>
-            <input type="text" id="fileNameInput" name="movieName" placeholder="Movie Name" required>
+    <div class="upload-container">
+        <form id="uploadForm" class="upload-form" enctype="multipart/form-data">
+            <div class="file-upload">
+                <div class="file-upload-placeholder">
+                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="video/*" id="fileInput" name="movie" required>
+                    <div class="drag-text">
+                        <h3>Drag and drop a file or click here</h3>
+                    </div>
+                </div>
+                <div class="file-upload-preview">
+                    <i class="fa-solid fa-photo-film file-upload-image"></i>
+                    <div class="file-upload-remove">
+                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded movie</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="button-upload-container">
+                <input type="text" id="fileNameInput" name="movieName" placeholder="Movie Name (engl):" required>
+                <button type="submit" class="button_upload">Upload</button>
+                <button type="button" id="cancelUploadButton" class="button_upload">Cancel Upload</button>
+            </div>
+        </form>
+        <div id="status"></div>
+        <div class="progress-container">
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
         </div>
-        <div>
-            <button type="submit" class="button_upload">Upload</button>
-            <button type="button" id="cancelUploadButton" class="button_upload">Cancel Upload</button>
-            <button type="button" id="cancelSelectButton" class="button_upload">Cancel Select</button>
-        </div>
-    </form>
-    <div id="status"></div>
-    <div id="progress-container">
-        <div id="progress-bar"></div>
     </div>
 </body>
 
@@ -84,5 +97,29 @@ if (!isset($_SESSION['id_user'])) {
     document.getElementById('cancelSelectButton').addEventListener('click', function() {
         document.getElementById('fileInput').value = '';
         document.getElementById('status').innerText = 'File selection canceled!';
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            document.querySelector('.file-upload-preview').style.display = 'block';
+            document.querySelector('.file-upload-placeholder').style.display = 'none';
+            document.querySelector('.image-title').innerText = input.files[0].name;
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        var $clone = $('.file-upload-input').val('').clone(true);
+        $('.file-upload-input').replaceWith($clone);
+        $('.file-upload-placeholder').show();
+        $('.file-upload-preview').hide();
+    }
+
+    $('.file-upload-placeholder').bind('dragover', function() {
+        $('.file-upload-placeholder').addClass('image-dropping');
+    });
+    $('.file-upload-placeholder').bind('dragleave', function() {
+        $('.file-upload-placeholder').removeClass('image-dropping');
     });
 </script>
