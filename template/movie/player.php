@@ -17,40 +17,12 @@ if (!isset($_SESSION['id_user'])) {
 </head>
 
 <body>
-    <a href="/pathe_rillette/dashboard" class="back-arrow fa-solid fa-arrow-left"></a>
-    <div class="video-container">
-        <video id="videoPlayer" src="" autoplay muted controls></video>
-    </div>
+    <!--normalement un player pour visionner le film s'affiche ici-->
 </body>
 
 </html>
 <script src="../../jquery-3.7.1.min.js"></script>
 <script>
-    const video = document.getElementById('videoPlayer');
-    const playPauseButton = document.querySelector('.play-pause');
-
-
-    setTimeout(function() {
-        video.muted = false;
-    }, 500);
-    video.addEventListener('mousemove', function() {
-        $('.back-arrow').fadeIn(100);
-        setTimeout(function() {
-            $('.back-arrow').fadeOut();
-        }, 5000);
-
-    });
-
-    function togglePlayPause() {
-        if (video.paused) {
-            video.play();
-            playPauseButton.textContent = 'Pause';
-        } else {
-            video.pause();
-            playPauseButton.textContent = 'Play';
-        }
-    }
-
     $(document).ready(function() {
         $.ajax({
             url: '/pathe_rillette/dispatch/movieDispatch.php',
@@ -72,18 +44,12 @@ if (!isset($_SESSION['id_user'])) {
                 id_movie: <?php echo $_GET['id'] ?>
             },
             success: async function(response) {
-                let last_time=null;
+                let last_time = null;
                 console.log(response);
                 const movie = JSON.parse(response);
-                video.src = '../' + movie["ref"];
                 let user_movies = JSON.parse(await getUserMovies());
-                video.currentTime = user_movies.find(userMovie => userMovie["id_movie"] == <?php echo $_GET['id'] ?>)["time_code"];
-                video.addEventListener('timeupdate', async function() {
-                    if (Math.floor(video.currentTime) % 20 === 0 && Math.floor(video.currentTime) != last_time) {
-                        last_time = Math.floor(video.currentTime);
-                        await set_info(<?php echo $_GET['id'] ?>, user_movies);
-                    }
-                });
+                await set_info(<?php echo $_GET['id'] ?>, user_movies);
+                window.location.href = "http://localhost/pathe_rillette/dashboard";
             }
         });
 
@@ -109,7 +75,7 @@ if (!isset($_SESSION['id_user'])) {
 
         async function set_info(id_movie, userMovies) {
             return new Promise((resolve, reject) => {
-                let last_time_code=userMovies.find(userMovie => userMovie["id_movie"] == id_movie)["time_code"];
+                let last_time_code = userMovies.find(userMovie => userMovie["id_movie"] == id_movie)["time_code"];
                 $.ajax({
                     url: '/pathe_rillette/dispatch/userMovieDispatch.php',
                     type: 'POST',
@@ -120,8 +86,8 @@ if (!isset($_SESSION['id_user'])) {
                         is_started: 1,
                         is_finished: userMovies.find(userMovie => userMovie["id_movie"] == id_movie)["is_finished"],
                         in_list: userMovies.find(userMovie => userMovie["id_movie"] == id_movie)["in_list"],
-                        time_code: last_time_code<=Math.floor(video.currentTime)?Math.floor(video.currentTime):last_time_code,
-                        duration: Math.floor(video.duration)
+                        time_code: 10000,
+                        duration: 5
                     },
                     success: function(response) {
                         resolve(response);
