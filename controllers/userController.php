@@ -3,14 +3,11 @@ require_once 'dbConnection.php';
 require '../vendor/autoload.php';
 ini_set('display_errors', 1);
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 class UserController
 {
     public function createUser($email, $password)
     {
-        $mail = new PHPMailer(true);
         
         // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -46,28 +43,6 @@ class UserController
         $stmt->bind_param("sss", $email, $hashedPassword, $token);
         $stmt->execute();
         $stmt->close();
-
-        try {
-            // Configuration du serveur SMTP
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Serveur SMTP (exemple : Gmail)
-            $mail->SMTPAuth = true;
-            $mail->Username = 'theo.pellefigue.pro@gmail.com'; // Adresse e-mail d'envoi
-            $mail->Password = 'nisz bimd tbsk ymaa'; // Mot de passe ou App Password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Protocole TLS
-            $mail->Port = 587; // Port SMTP pour TLS (ou 465 pour SSL)
-
-            // Paramètres de l'e-mail
-            $mail->setFrom('theo.pellefigue.pro@gmail.com', 'pathe & rillettes'); // Expéditeur
-            $mail->addAddress('theo.pellefigue@gmail.com', 'theo pellefigue'); // Destinataire
-            $mail->Subject = 'Validation compte Pathe & Rillettes'; // Objet
-            $mail->Body = '<h1>Bonjour</h1><br><br><h3>Validation d\'un compte necessaire</h3><br><br><p> Un compte avec l\'adresse email suivante necessite une validation: ' . $email . '.<br>Cliquez <a href="' . $url . '">ici pour valider le compte</a>.</p>';
-            $mail->isHTML(true); // Format HTML
-
-            // Envoi de l'e-mail
-            $mail->send();
-        } catch (Exception $e) {
-        }
         return "User created.";
     }
 

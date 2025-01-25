@@ -8,6 +8,35 @@ $client = new \GuzzleHttp\Client();
 
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 
+/* $servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "pathe_rillettes";
+$seriesDetails = file_get_contents('../series_details.json');
+$seriesDetailsArray = json_decode($seriesDetails, true);
+foreach ($seriesDetailsArray as $details) {
+    $title = $details['title'];
+    $categories = $details['genre'];
+    $duration = $details['runtime'];
+    $views = 0;
+    $ref = '';
+    $description = $details['plot'];
+    $review = 0;
+    $poster_ref = $details['poster'];
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $sql = "INSERT INTO movies (title, categories, duration, views, ref, description, review, poster_ref) VALUES ('$title', '$categories', '$duration', '$views', '$ref', '$description', '$review', '$poster_ref')";
+    if ($conn->query($sql) === TRUE) {
+        echo "Movie added successfully.";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
+}
+die(); */
+
 switch ($action) {
     case 'upload_movie':
         uploadMovie($client);
