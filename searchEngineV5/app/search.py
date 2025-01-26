@@ -1,6 +1,6 @@
 import numpy as np
 import logging
-from app.utils import obtenir_informations_tmdb
+from app.utils import obtenir_informations_omdb
 
 def rechercher_series(requete, tfidf_matrix, vectorizer, titres_series, top_n=10, seuil=0.002):
     # Normalisation de la requête (mettre en minuscules pour ignorer la casse)
@@ -15,7 +15,7 @@ def rechercher_series(requete, tfidf_matrix, vectorizer, titres_series, top_n=10
         index_exact = titres_series_lower.index(requete_normalise)
         titre_exact = titres_series[index_exact]
         logging.info(f"Titre exact trouvé : {titre_exact}")
-        details_exact = obtenir_informations_tmdb(titre_exact)
+        details_exact = obtenir_informations_omdb(titre_exact)
         return [details_exact]  # Retourner directement le résultat exact
 
     # Si pas de correspondance exacte, calculer la similarité cosinus
@@ -27,6 +27,6 @@ def rechercher_series(requete, tfidf_matrix, vectorizer, titres_series, top_n=10
     series_trouvees = [(titre, score) for score, titre in series_scores if score > seuil]
 
     # Obtenir les informations sur les séries trouvées (jusqu'à top_n)
-    details_series = [obtenir_informations_tmdb(titre) for titre, _ in series_trouvees[:top_n]]
+    details_series = [obtenir_informations_omdb(titre) for titre, _ in series_trouvees[:top_n]]
     
     return [d for d in details_series if d]  # Retourner les détails des séries similaires

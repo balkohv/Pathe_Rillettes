@@ -20,14 +20,17 @@
                 {% for serie in details_series %}
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="{{ serie.poster }}" class="card-img-top" alt="Affiche de {{ serie.title }}">
+                            <img src="{{ serie.poster }}" class="card-img-top" alt="Affiche de {{ serie.title }} ({{ serie.year }})">
                             <div class="card-body">
-                                <h5 class="card-title">{{ serie.title }}</h5>
-                                <p class="card-text"><strong>Genre :</strong> {{ serie.genre_ids }}</p>
-                                <p class="card-text"><strong>Synopsis :</strong> {{ serie.overview }}</p>
-                                <p class="card-text"><strong>Sortie :</strong> {{ serie.release_date }}</p>
-                                <p class="card-text"><strong>Classification :</strong> {{ serie.vote_average }}</p>
-                                <p class="card-text"><strong>Metascore :</strong> {{ serie.popularity }}</p>
+                                <h5 class="card-title">Titre : {{ serie.title }}</h5>
+                                <p class="card-text">Année : {{ serie.year }}</p>
+                                <p class="card-text">Note : {{ serie.rated }}</p>
+                                <p class="card-text">Durée : {{ serie.runtime }}</p>
+                                <p class="card-text">Genre : {{ serie.genre }}</p>
+                                <p class="card-text">Réalisateur : {{ serie.director }}</p>
+                                <p class="card-text">Synopsis : {{ serie.plot }}</p>
+                                <p class="card-text">Note Metascore : {{ serie.metascore }}</p>
+                                <p class="card-text">Type : {{ serie.type }}</p>
                             </div>
                         </div>
                     </div>

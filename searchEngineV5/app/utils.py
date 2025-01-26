@@ -1,28 +1,29 @@
 import requests
 import logging
 from functools import lru_cache
-TMDB_API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OGRlZTliNDU0NzAyYTUyN2I2NGZiOTkzZGYzZWYxZiIsIm5iZiI6MTczNjA4NDU3OC40MjMsInN1YiI6IjY3N2E4YzYyODJjY2UxNWE3Njc0ZjY1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vUxSHTJb17jGKbuEmtIevhN8w5MpuYPg4b2iB4Fa5PQ'
+
+OMDB_API_KEY = '9a883ce3'
 
 @lru_cache(maxsize=500)
-def obtenir_informations_tmdb(titre):
-    url = f"https://api.themoviedb.org/3/search/movie?query={titre}&include_adult=true&language=fr-US&page=1"
-    headers = {
-        'Authorization': f'Bearer {TMDB_API_KEY}',
-        'accept': 'application/json'
-    }
-    response = requests.get(url, headers=headers)
+def obtenir_informations_omdb(titre):
+    OMDB_API_KEY = '9a883ce3'
+    url = f"http://www.omdbapi.com/?t={titre}&apikey={OMDB_API_KEY}"
+    response = requests.get(url)
     data = response.json()
 
-    if response.status_code == 200 and data.get('results'):
+    if data['Response'] == 'True':
         return {
-            'poster': f"https://image.tmdb.org/t/p/w500{data['results'][0].get('poster_path')}",
-            'title': data['results'][0].get('title'),
-            'genre_ids': ', '.join(map(str, data['results'][0].get('genre_ids', []))),
-            'overview': data['results'][0].get('overview'),
-            'release_date': data['results'][0].get('release_date'),
-            'vote_average': data['results'][0].get('vote_average'),
-            'popularity': data['results'][0].get('popularity')
+            'title': data.get('Title'),
+            'year': data.get('Year'),
+            'rated': data.get('Rated'),
+            'runtime': data.get('Runtime'),
+            'genre': data.get('Genre'),
+            'director': data.get('Director'),
+            'plot': data.get('Plot'),
+            'poster': data.get('Poster'),
+            'metascore': data.get('Metascore'),
+            'type': data.get('Type')
         }
     else:
-        logging.warning(f"TMDB introuvable pour {titre}")
+        logging.error(f"Erreur lors de la récupération des informations pour le film {titre}")
         return None

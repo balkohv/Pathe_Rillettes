@@ -1,13 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
-
--- Generation Time: Jan 25, 2025 at 07:42 PM
-
--- Server version: 5.7.24
--- PHP Version: 8.0.1
+-- Hôte : 127.0.0.1
+-- Généré le : sam. 25 jan. 2025 à 23:56
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pathe_rillettes`
+-- Base de données : `pathe_rillettes`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movies`
+-- Structure de la table `movies`
 --
 
 CREATE TABLE `movies` (
@@ -34,24 +32,24 @@ CREATE TABLE `movies` (
   `title` varchar(200) NOT NULL,
   `categories` varchar(200) DEFAULT NULL,
   `duration` varchar(200) DEFAULT NULL,
-  `views` int(11) NOT NULL DEFAULT '0',
+  `views` int(11) NOT NULL DEFAULT 0,
   `ref` varchar(200) NOT NULL,
   `description` varchar(10000) NOT NULL,
   `review` float NOT NULL,
   `poster_ref` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `movies`
+-- Déchargement des données de la table `movies`
 --
 
 INSERT INTO `movies` (`id_movie`, `title`, `categories`, `duration`, `views`, `ref`, `description`, `review`, `poster_ref`) VALUES
 (18, '24', 'Action, Crime, Drama', '44 min', 2, '', 'Counter Terrorism Agent Jack Bauer races against the clock to subvert terrorist plots and save his nation from ultimate disaster.', 0, 'https://m.media-amazon.com/images/M/MV5BMTg5OTkyNzA0NF5BMl5BanBnXkFtZTcwMDYyMDUwMg@@._V1_SX300.jpg'),
 (19, '90210', 'Comedy, Drama, Romance', '2 min', 0, '', 'A Kansas family relocates to Beverly Hills, where their two children adapt to the infamous social drama of West Beverly Hills High.', 0, 'https://m.media-amazon.com/images/M/MV5BMTMxNzE4OTE2OV5BMl5BanBnXkFtZTcwNDQxMTY4MQ@@._V1_SX300.jpg'),
 (20, 'Angel', 'Action, Adventure, Drama', '16S min', 0, '', 'The vampire Angel, cursed with a soul, moves to Los Angeles and aids people with supernatural-related problems while questing for his own redemption.', 0, 'https://m.media-amazon.com/images/M/MV5BMjQzMTliMWYtNDQ3Ny00MTdmLWJjODQtNTk3NTcyZDMwMmMwXkEyXkFqcGc@._V1_SX300.jpg'),
-(21, 'Blade', 'Action, Horror, Sci-Fi', '120 min', 0, '', 'A half-vampire, half-mortal man becomes a protector of the mortal race, while slaying evil vampires.', 0, 'https://m.media-amazon.com/images/M/MV5BNzAzMmY3OWMtNDgyMS00Y2U4LTlmM2UtY2YwMmM0MDI5ODJmXkEyXkFqcGc@._V1_SX300.jpg'),
-(22, 'Bloodties', 'Short, Crime', '5 min', 0, '', 'Anthony has a decision he must make. After he decides, everything unravels around him.', 0, 'N/A'),
-(23, 'Buffy', 'Short', '7 min', 0, '', 'A portrait of Canadian folk music icon Buffy Sainte-Marie', 0, 'https://m.media-amazon.com/images/M/MV5BMTgxMzYyNGItZmY0MS00ZWU2LTllMzgtODdiMmFjZWUzMmEzXkEyXkFqcGc@._V1_SX300.jpg'),
+(21, 'Blade', 'Action, Horror, Sci-Fi', '120 min', 1, '', 'A half-vampire, half-mortal man becomes a protector of the mortal race, while slaying evil vampires.', 0, 'https://m.media-amazon.com/images/M/MV5BNzAzMmY3OWMtNDgyMS00Y2U4LTlmM2UtY2YwMmM0MDI5ODJmXkEyXkFqcGc@._V1_SX300.jpg'),
+(22, 'Bloodties', 'Short, Crime', '5 min', 0, '', 'Anthony has a decision he must make. After he decides, everything unravels around him.', 0, 'https://fr.web.img2.acsta.net/c_310_420/pictures/210/070/21007028_20130520103948701.jpg'),
+(23, 'Buffy the Vampire Slayer', 'Action, Adventure, Drama', '44 min', 0, '', 'A young woman, destined to slay vampires, demons and other infernal creatures, deals with her life fighting evil, with the help of her friends.', 0, 'https://m.media-amazon.com/images/M/MV5BMDk4MGVkNDAtZjQwZi00MDc3LWE4MmEtY2YyODQ2NDQyMjgxXkEyXkFqcGc@._V1_SX300.jpg'),
 (24, 'Californication', 'Comedy, Drama', '28 min', 0, '', 'A writer tries to juggle his career, his relationship with his daughter and his ex-girlfriend, as well as his appetite for beautiful women.', 0, 'https://m.media-amazon.com/images/M/MV5BMjAyMDM2ODExNF5BMl5BanBnXkFtZTgwNTI2MjkzMTE@._V1_SX300.jpg'),
 (25, 'Caprica', 'Action, Drama, Sci-Fi', '60 min', 1, '', 'Two families, the Graystones and the Adamas, live together on a peaceful planet known as Caprica, where a startling breakthrough in artificial intelligence brings about unforeseen consequences.', 0, 'https://m.media-amazon.com/images/M/MV5BNTA2NGZiOGUtNDI2My00NjAxLWFjZDItNzNhYTJmNmY4MjhiXkEyXkFqcGc@._V1_SX300.jpg'),
 (26, 'Charmed', 'Drama, Fantasy, Mystery', '42 min', 0, '', 'Three Halliwell sisters discover that they are descendants of a line of good female witches and are destined to fight against the forces of evil, using their combined power of witchcraft known as the \"Power of Three\".', 0, 'https://m.media-amazon.com/images/M/MV5BOGU5MGU3NmYtOTIzNi00NTg2LTkxMWUtNjQwMzhiNWQ5NzQ0XkEyXkFqcGc@._V1_SX300.jpg'),
@@ -73,7 +71,7 @@ INSERT INTO `movies` (`id_movie`, `title`, `categories`, `duration`, `views`, `r
 (42, 'Leverage', 'Crime, Mystery, Thriller', '42 min', 0, '', 'Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.', 0, 'https://m.media-amazon.com/images/M/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg'),
 (43, 'Life', 'Horror, Sci-Fi, Thriller', '104 min', 0, '', 'A team of scientists aboard the International Space Station discover a rapidly evolving life form that caused extinction on Mars and now threatens all life on Earth.', 0, 'https://m.media-amazon.com/images/M/MV5BNWNkYWYzNGUtOWVjNS00MGY0LWIyY2YtODllNGIxOGRlOTgyXkEyXkFqcGc@._V1_SX300.jpg'),
 (44, 'Lost', 'Adventure, Drama, Fantasy', '44 min', 0, '', 'The survivors of a plane crash are forced to work together in order to survive on a seemingly deserted tropical island.', 0, 'https://m.media-amazon.com/images/M/MV5BZmZhY2ViYzYtMTQ0NS00NDcyLWIxZTYtMGUyODE0NDA0NmNkXkEyXkFqcGc@._V1_SX300.jpg'),
-(45, 'Madmen', 'Action, Comedy', '85 min', 0, '', 'A comedy about two young guys who escape from psychiatric hospital.', 0, 'N/A'),
+(45, 'Madmen', 'Action, Comedy', '85 min', 0, '', 'A comedy about two young guys who escape from psychiatric hospital.', 0, 'https://fr.web.img3.acsta.net/r_1920_1080/pictures/20/07/03/05/20/2926366.jpg'),
 (46, 'Medium', 'Crime, Drama, Fantasy', '60 min', 0, '', 'Suburban mom Allison DuBois attempts to balance family life with solving mysteries using her special gift. The dead send her visions of their deaths or other crimes while she sleeps.', 0, 'https://m.media-amazon.com/images/M/MV5BMTIyMTE3MTA2N15BMl5BanBnXkFtZTcwMjU3NTg1MQ@@._V1_SX300.jpg'),
 (47, 'Merlin', 'Adventure, Drama, Fantasy', '45 min', 0, '', 'These are the brand new adventures of Merlin, the legendary sorcerer as a young man, when he was just a servant to young Prince Arthur on the royal court of Camelot, who has soon become his best friend, and turned Arthur into a gr...', 0, 'https://m.media-amazon.com/images/M/MV5BNmI5NDgyZmQtNDc3YS00Mjg0LThmMzEtZjcyNzczOTJlYWY4XkEyXkFqcGc@._V1_SX300.jpg'),
 (48, 'Moonlight', 'Drama', '111 min', 0, '', 'A young African-American man grapples with his identity and sexuality while experiencing the everyday struggles of childhood, adolescence, and burgeoning adulthood.', 0, 'https://m.media-amazon.com/images/M/MV5BNzQxNTIyODAxMV5BMl5BanBnXkFtZTgwNzQyMDA3OTE@._V1_SX300.jpg'),
@@ -97,46 +95,47 @@ INSERT INTO `movies` (`id_movie`, `title`, `categories`, `duration`, `views`, `r
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `mail` varchar(50) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `active` tinyint(1) DEFAULT '1',
+  `active` tinyint(1) DEFAULT 1,
   `token` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id_user`, `mail`, `password`, `active`, `token`) VALUES
 (1, 'theo.pellefigue@gmail.com', '$2y$10$NsJ1NipDmuofw3cdoPh/ouq3tRqqvU92/zWU0Gl2uNxUy3aYxV5x2', 1, ''),
 (16, 'jeanlouis.lamare@gmail.com', '$2y$10$azPmCSramejW6adhJJoP/ewNID5cRqbX/.HRZSdMAuVGz6Jj6fHP.', 1, '409b10d98ccebee1d96d450268fc53c02e94da32a74a2f419f66b7e494ee10ac9e1e6459769038421f285be9f69991ddac66'),
-(17, 'test@test.test', '$2y$10$FXmrKOQWjKWkgU7lxhtxY.cYr0x0/lyMjZx62iXISb/Vd8RD6V7b2', 1, '10701d51a5a4ad6852932c74e0e2ff5ec01d274735f737ca2fa1c0764615772266023fdc8635c1bfcaa628172efd5cf095c4');
+(17, 'test@test.test', '$2y$10$FXmrKOQWjKWkgU7lxhtxY.cYr0x0/lyMjZx62iXISb/Vd8RD6V7b2', 1, '10701d51a5a4ad6852932c74e0e2ff5ec01d274735f737ca2fa1c0764615772266023fdc8635c1bfcaa628172efd5cf095c4'),
+(18, 'jas.bessier@gmail.com', '$2y$10$koE6MsRDanJMDmlsYZhteekCZ2VXt0Nsuz4BZN1A20S1YimhnlFvK', 1, 'd8be18963a4eabf866efdce07380eb2814814942e4fad3805eca1e84706b370f8c79af964a4fbf501fa8e11f9555b97dfd0c');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_movie`
+-- Structure de la table `user_movie`
 --
 
 CREATE TABLE `user_movie` (
   `id_user` int(11) NOT NULL,
   `id_movie` int(11) NOT NULL,
-  `is_started` tinyint(1) NOT NULL DEFAULT '0',
-  `is_finished` tinyint(1) NOT NULL DEFAULT '0',
-  `in_list` tinyint(1) NOT NULL DEFAULT '0',
-  `time_code` int(11) NOT NULL DEFAULT '0',
-  `duration` int(11) NOT NULL DEFAULT '0',
-  `watch_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `vote` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `is_started` tinyint(1) NOT NULL DEFAULT 0,
+  `is_finished` tinyint(1) NOT NULL DEFAULT 0,
+  `in_list` tinyint(1) NOT NULL DEFAULT 0,
+  `time_code` int(11) NOT NULL DEFAULT 0,
+  `duration` int(11) NOT NULL DEFAULT 0,
+  `watch_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `vote` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `user_movie`
+-- Déchargement des données de la table `user_movie`
 --
 
 INSERT INTO `user_movie` (`id_user`, `id_movie`, `is_started`, `is_finished`, `in_list`, `time_code`, `duration`, `watch_date`, `vote`) VALUES
@@ -147,53 +146,58 @@ INSERT INTO `user_movie` (`id_user`, `id_movie`, `is_started`, `is_finished`, `i
 (1, 23, 0, 0, 0, 0, 0, '2025-01-25 20:11:59', 0),
 (1, 25, 0, 0, 0, 10000, 0, '2025-01-25 19:36:44', 0),
 (1, 53, 0, 0, 0, 0, 0, '2025-01-25 20:16:21', 0),
-(1, 59, 0, 0, 0, 0, 0, '2025-01-25 20:11:02', 0);
+(1, 59, 0, 0, 0, 0, 0, '2025-01-25 20:11:02', 0),
+(18, 21, 1, 0, 0, 10000, 5, '2025-01-25 23:43:51', 0),
+(18, 22, 0, 0, 0, 0, 0, '2025-01-25 23:43:33', 0),
+(18, 23, 0, 0, 0, 0, 0, '2025-01-25 23:43:16', 0),
+(18, 25, 0, 0, 0, 0, 0, '2025-01-25 23:44:13', 0),
+(18, 45, 0, 0, 0, 0, 0, '2025-01-25 23:44:18', 0);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `movies`
+-- Index pour la table `movies`
 --
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id_movie`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `user_movie`
+-- Index pour la table `user_movie`
 --
 ALTER TABLE `user_movie`
   ADD PRIMARY KEY (`id_user`,`id_movie`),
   ADD KEY `foreign_key_id_movie` (`id_movie`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `movies`
+-- AUTO_INCREMENT pour la table `movies`
 --
 ALTER TABLE `movies`
   MODIFY `id_movie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `user_movie`
+-- Contraintes pour la table `user_movie`
 --
 ALTER TABLE `user_movie`
   ADD CONSTRAINT `foreign_key_id_movie` FOREIGN KEY (`id_movie`) REFERENCES `movies` (`id_movie`) ON DELETE CASCADE ON UPDATE CASCADE,
