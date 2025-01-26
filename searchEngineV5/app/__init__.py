@@ -1,20 +1,17 @@
 import logging
 from flask import Flask
+from flask_cors import CORS  # Pour permettre les requêtes depuis un serveur web
 from app.routes import init_routes
 from app.tfidf_handler import initialiser_tfidf
 
-# Configuration de la journalisation
 logging.basicConfig(level=logging.INFO)
 
-# Création de l'application Flask
 app = Flask(__name__)
+CORS(app)  # Active CORS pour permettre les requêtes depuis un autre domaine
 
-# Initialisation des données TF-IDF
 tfidf_data = initialiser_tfidf()
-
-# Ajout des routes
 init_routes(app, tfidf_data)
 
 if __name__ == "__main__":
-    logging.info("Lancement de l'application Flask")
-    app.run(debug=True)
+    logging.info("Lancement de l'API Flask")
+    app.run(debug=True, host="0.0.0.0", port=5000)
