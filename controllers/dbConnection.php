@@ -3,7 +3,7 @@ class DbConnection
 {
     public function getDbConnection()
     {
-        $db = new mysqli('localhost:3306', 'root', 'root', 'pathe_rillettes');
+        $db = new mysqli('localhost:3306', 'jason', 'root', 'pathe_rillettes');
         if ($db->connect_error) {
             die("Connection failed: " . $db->connect_error);
         }

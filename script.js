@@ -40,6 +40,7 @@ $(document).ready(function() {
                 let id_movie = $(this).attr('id');
                 movies.forEach(function(movie) {
                     if (movie["id_movie"] == id_movie) {
+                        console.log(movie["id_movie"], id_movie);
                         var movieTitle = movie["title"];
                         var movieDescription = movie["description"];
                         $('#poster').empty();

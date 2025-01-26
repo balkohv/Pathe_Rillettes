@@ -21,7 +21,7 @@ if (!isset($_SESSION['id_user'])) {
     <?php include '../navbar.html'; ?>
     <!-- nav bar -->
     <div class="content">
-        <h2>Continue Watching</h2>
+        <h2>Liked</h2>
         <div class="row" id="ContinueWatching">
             <!-- Movies will be displayed here -->
         </div>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['id_user'])) {
                         <button id="addToWatchListButton"></button>
                     </div>
                 </div>
-                <button id="playButton">Play</button>
+                <button id="playButton">Like</button>
             </div>
             <div id="poster"></div>
         </div>

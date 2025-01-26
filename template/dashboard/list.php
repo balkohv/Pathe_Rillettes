@@ -33,7 +33,7 @@ if (!isset($_SESSION['id_user'])) {
                         <button id="addToWatchListButton"></button>
                     </div>
                 </div>
-                <button id="playButton">Play</button>
+                <button id="playButton">Like</button>
             </div>
             <div id="poster"></div>
         </div>
@@ -46,16 +46,16 @@ if (!isset($_SESSION['id_user'])) {
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: '../../dispatch/movieDispatch.php',
+            url: 'http://localhost:5000/recherche',
             type: 'POST',
-            data: {
-                action: 'search',
-                search: '<?php echo $_GET['search'] ?>'
-            },
+            contentType: 'application/json',
+            data: JSON.stringify({
+                requete: '<?php echo $_GET['search'] ?>'
+            }),
             success: function(response) {
                 let i = 0;
                 let k = 0;
-                var movies = JSON.parse(response);
+                var movies = response.resultats;
                 var container_content = $('body');
                 container_content.append('<div class="row" id="searchResult_' + k + '"></div>');
                 var container = $('#searchResult_' + k);
@@ -69,9 +69,10 @@ if (!isset($_SESSION['id_user'])) {
                         container = $('#searchResult_' + k);
                         i = 0;
                     }
-                    container.append('<div class="item" id="' + movie["id_movie"] + '"><img src="' + movie["poster_ref"] + '" alt="' + movie["title"] + '" title="' + movie["title"] + '"></div>');
+                    container.append('<div class="item" id="' + movie["id"] + '"><img src="' + movie["poster"] + '" alt="' + movie["title"] + '" title="' + movie["title"] + '"></div>');
                 });
             }
         });
     });
+</script>
 </script>
