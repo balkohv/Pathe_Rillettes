@@ -23,7 +23,7 @@ def obtenir_informations_omdb(titre):
             'poster': data.get('Poster'),
             'metascore': data.get('Metascore'),
             'type': data.get('Type'),
-            'id': data.get('imdbID')
+            'id': int(data.get('imdbID')[2:]) if data.get('imdbID') else None
         }
     else:
         logging.error(f"Erreur lors de la récupération des informations pour le film {titre}")

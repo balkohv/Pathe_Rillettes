@@ -33,7 +33,7 @@ if (!isset($_SESSION['id_user'])) {
                         <button id="addToWatchListButton"></button>
                     </div>
                 </div>
-                <button id="playButton">Play</button>
+                <button id="playButton">Like</button>
             </div>
             <div id="poster"></div>
         </div>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['id_user'])) {
                         container = $('#searchResult_' + k);
                         i = 0;
                     }
-                    container.append('<div class="item" id="' + movie["id_movie"] + '"><img src="' + movie["poster"] + '" alt="' + movie["title"] + '" title="' + movie["title"] + '"></div>');
+                    container.append('<div class="item" id="' + movie["id"] + '"><img src="' + movie["poster"] + '" alt="' + movie["title"] + '" title="' + movie["title"] + '"></div>');
                 });
             }
         });
