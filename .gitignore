@@ -2,3 +2,4 @@ movies/
 vendor/
 .conda/
 searchEngineV5/app/__pycache__/
+searchEngineV5/data/tfidf_data.pkl
