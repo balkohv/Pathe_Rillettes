@@ -1,2 +1,4 @@
 movies/
 vendor/
+.conda/
+searchEngineV5/app/__pycache__/

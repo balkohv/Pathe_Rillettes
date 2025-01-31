@@ -1,6 +1,11 @@
 import logging
+import os
+import sys
 from flask import Flask
 from flask_cors import CORS  # Pour permettre les requêtes depuis un serveur web
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from app.routes import init_routes
 from app.tfidf_handler import initialiser_tfidf
 

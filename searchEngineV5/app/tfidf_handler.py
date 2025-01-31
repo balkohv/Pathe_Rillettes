@@ -1,14 +1,19 @@
 import pickle
 import logging
+import os
+import sys
 from sklearn.feature_extraction.text import TfidfVectorizer
 from app.preprocessing import lire_fichiers_txt
 from pathlib import Path
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 # Chemins des fichiers
 DOSSIER_RACINE = Path('./data/sous-titres-cleaned')
 SAUVEGARDE_TFIDF = Path('./data/tfidf_data.pkl')
 
 def initialiser_tfidf():
+    print(DOSSIER_RACINE)
     if SAUVEGARDE_TFIDF.exists():
         logging.info("Chargement du modèle TF-IDF...")
         return charger_tfidf()
