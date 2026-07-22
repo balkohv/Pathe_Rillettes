@@ -66,7 +66,7 @@ if (!isset($_SESSION['id_user'])) {
         formData.append('action', "upload_movie");
 
         xhr = new XMLHttpRequest();
-        xhr.open('POST', '/pathe_rillette/dispatch/movieDispatch.php', true);
+        xhr.open('POST', 'http://93.8.28.18:84/pathe_rillette/dispatch/movieDispatch.php', true);
 
         xhr.upload.onprogress = function(event) {
             if (event.lengthComputable) {
@@ -90,10 +90,6 @@ if (!isset($_SESSION['id_user'])) {
         }
     });
 
-    document.getElementById('cancelSelectButton').addEventListener('click', function() {
-        document.getElementById('fileInput').value = '';
-        document.getElementById('status').innerText = 'File selection canceled!';
-    });
 
     function readURL(input) {
         if (input.files && input.files[0]) {

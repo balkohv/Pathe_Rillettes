@@ -55,7 +55,7 @@ function uploadMovie($client)
                 ]);
                 $servername = "localhost";
                 $username = "root";
-                $password = "root";
+                $password = "Micheldu15*";
                 $dbname = "pathe_rillettes";
 
                 $conn = new mysqli($servername, $username, $password, $dbname);

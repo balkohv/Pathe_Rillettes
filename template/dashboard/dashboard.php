@@ -38,7 +38,7 @@ if (!isset($_SESSION['id_user'])) {
             <!-- Movies will be displayed here -->
         </div>
         <h2>All Movies</h2>
-        <div class="row" id="AllMovies">
+        <div id="AllMovies">
             <!-- Movies will be displayed here -->
         </div>
     </div>

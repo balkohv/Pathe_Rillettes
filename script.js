@@ -10,9 +10,21 @@ $(document).ready(function() {
             load_my_list(userMovies, movies);
             load_recommendations(userMovies, movies);
             load_popular_movies(movies);
-            let container = $('#AllMovies');
+            let i = -1;
+            let k = 0;
+            let container_content = $('#AllMovies');
+            container_content.append('<div class="row" id="all_movie_' + k + '"></div>');
+            let container =$('#all_movie_' + k);
             container.empty();
             movies.forEach(function(movie) {
+                console.log(movie);
+                i++;
+                if (i > 8) {
+                    k++;
+                    container_content.append('<div class="row" id="all_movie_' + k + '"></div>');
+                    container = $('#all_movie_' + k);
+                    i = 0;
+                }
                 container.append('<div class="item" id="' + movie["id_movie"] + '"><img src="' + movie["poster_ref"] + '" alt="' + movie["title"] + '" title="' + movie["title"] + '"></div>');
             });
 

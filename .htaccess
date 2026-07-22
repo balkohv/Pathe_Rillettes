@@ -1,7 +1,7 @@
 RewriteEngine On
 
 RewriteBase /
-
+RewriteCond %{REQUEST_URI} !^/pathe_rillette/dispatch/movieDispatch.php$
 RewriteRule ^login$ pathe_rillette/template/login.php [L]
 RewriteRule ^register/([0-9]+)$ pathe_rillette/template/register.php?error=$1 [L]
 RewriteRule ^login/([0-9]+)$ pathe_rillette/template/login.php?error=$1 [L]
@@ -10,3 +10,4 @@ RewriteRule ^dashboard$ pathe_rillette/template/dashboard/dashboard.php [L]
 RewriteRule ^movie/player/([0-9]+)$ pathe_rillette/template/movie/player.php?id=$1 [L]
 RewriteRule ^movie/add$ pathe_rillette/template/movie/movies.php [L]
 RewriteRule ^movie/search/(.+)$ pathe_rillette/template/dashboard/list.php?search=$1 [L]
+RewriteRule ^user/validation/(.+)$ pathe_rillette/dispatch/userDispatch.php?action=validation&token=$1 [L]

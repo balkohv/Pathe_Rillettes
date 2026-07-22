@@ -1,8 +1,8 @@
 <?php
 // /c:/MAMP/htdocs/Pathe_rillette/dispatch/userDispatch.php
-
+ini_set('display_errors', 1);
 // Include the UserController
-require_once '../controllers/UserController.php';
+require_once '../controllers/userController.php';
 
 // Create an instance of the UsersController
 $usersController = new UserController();

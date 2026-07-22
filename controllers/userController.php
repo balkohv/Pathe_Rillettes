@@ -27,7 +27,7 @@ class UserController
 
         // Insert user into the database (assuming you have a database connection)
         $token = bin2hex(random_bytes(50));
-        $url = "http://localhost/Pathe_rillette/dispatch/userDispatch.php?action=validation&token=" . $token;
+        $url = "http://93.8.28.18/pathe_rillette/user/validation/" . $token;
         $dbConnection = new DbConnection();
         $db = $dbConnection->getDbConnection();
         $stmt = $db->prepare("SELECT id_user FROM users WHERE mail = ?");

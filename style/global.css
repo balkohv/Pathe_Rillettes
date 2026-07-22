@@ -129,8 +129,13 @@ button:hover {
     overflow: hidden;
 }
 
+#poster-modal{
+    width: 500px;
+}
+
 .row .item img {
     width: 100%;
+    height: 100%;
     display: block;
 }
 
