@@ -4,26 +4,26 @@ if (!isset($_SESSION['id_user'])) {
     header('Location: /pathe_rillette/login');
     exit;
 }
+$movieId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathe & rillettes player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <title>Player - Pathe &amp; Rillettes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="../../style/player.css">
 </head>
 
 <body>
-    <a href="/pathe_rillette/dashboard" class="back-arrow fa-solid fa-arrow-left"></a>
-    <div class="video-container">
-        <video id="videoPlayer" src="" autoplay muted controls></video>
-    </div>
-</body>
+    <a href="/pathe_rillette/dashboard" class="back-arrow fa-solid fa-arrow-left" aria-label="Back to dashboard" title="Back"></a>
+    <main class="video-container">
+        <video id="videoPlayer" src="" autoplay muted controls playsinline preload="metadata"></video>
+    </main>
 
-</html>
 <script src="../../jquery-3.7.1.min.js"></script>
 <script>
     const video = document.getElementById('videoPlayer');
@@ -57,7 +57,7 @@ if (!isset($_SESSION['id_user'])) {
             type: 'POST',
             data: {
                 action: 'watch',
-                id_movie: <?php echo $_GET['id'] ?>
+                id_movie: <?php echo $movieId; ?>
             },
             success: function(response) {
                 console.log(response);
@@ -69,7 +69,7 @@ if (!isset($_SESSION['id_user'])) {
             type: 'POST',
             data: {
                 action: 'getMovieById',
-                id_movie: <?php echo $_GET['id'] ?>
+                id_movie: <?php echo $movieId; ?>
             },
             success: async function(response) {
                 let last_time=null;
@@ -77,11 +77,11 @@ if (!isset($_SESSION['id_user'])) {
                 const movie = JSON.parse(response);
                 video.src = '../' + movie["ref"];
                 let user_movies = JSON.parse(await getUserMovies());
-                video.currentTime = user_movies.find(userMovie => userMovie["id_movie"] == <?php echo $_GET['id'] ?>)["time_code"];
+                video.currentTime = user_movies.find(userMovie => userMovie["id_movie"] == <?php echo $movieId; ?>)["time_code"];
                 video.addEventListener('timeupdate', async function() {
                     if (Math.floor(video.currentTime) % 20 === 0 && Math.floor(video.currentTime) != last_time) {
                         last_time = Math.floor(video.currentTime);
-                        await set_info(<?php echo $_GET['id'] ?>, user_movies);
+                        await set_info(<?php echo $movieId; ?>, user_movies);
                     }
                 });
             }
@@ -139,3 +139,6 @@ if (!isset($_SESSION['id_user'])) {
         }
     });
 </script>
+</body>
+
+</html>

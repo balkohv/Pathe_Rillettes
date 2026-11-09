@@ -1,32 +1,39 @@
+html,
 body {
     margin: 0;
     padding: 0;
-    background-color: #000;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden; /* Supprime les éventuels débordements */
+    height: 100dvh;
 }
 
 .video-container {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Masque les débordements */
+    overflow: hidden;
+    background: #000;
 }
 
+/* "contain" : le film n'est plus rogné, quel que soit l'écran */
 video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centre la vidéo */
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ajuste la vidéo pour remplir la taille tout en respectant ses proportions */
+    object-fit: contain;
     display: block;
+    background: #000;
 }
 
 .controls {
@@ -39,7 +46,7 @@ video {
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s;
-    z-index: 10; /* Assure que les contrôles sont au-dessus de la vidéo */
+    z-index: 10;
 }
 
 .video-container:hover .controls {
@@ -53,19 +60,29 @@ video {
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
+/* Bouton retour : zone tactile confortable, lisible sur fond de vidéo */
 .back-arrow {
     position: absolute;
     z-index: 10;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    color: rgb(95, 95, 95);
+    top: max(10px, env(safe-area-inset-top));
+    left: max(10px, env(safe-area-inset-left));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
     text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .back-arrow:hover {
-    color: #c9c9c9;
+    background: rgba(229, 9, 20, 0.85);
+    color: #fff;
 }
